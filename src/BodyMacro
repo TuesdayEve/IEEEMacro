@@ -1,0 +1,78 @@
+Sub Macro1()
+'
+' Macro1 Macro
+'
+'
+    Selection.Font.Name = "Times New Roman"
+    If ActiveWindow.View.SplitSpecial <> wdPaneNone Then
+        ActiveWindow.Panes(2).Close
+    End If
+    If ActiveWindow.ActivePane.View.Type <> wdPrintView Then
+        ActiveWindow.ActivePane.View.Type = wdPrintView
+    End If
+    With Selection.PageSetup.TextColumns
+        .SetCount NumColumns:=2
+        .EvenlySpaced = True
+        .LineBetween = False
+        .Width = InchesToPoints(6.5)
+    End With
+End Sub
+Sub Macro2()
+'
+' Macro2 Macro
+'
+'
+    Selection.Font.Name = "Times New Roman"
+    If ActiveWindow.View.SplitSpecial <> wdPaneNone Then
+        ActiveWindow.Panes(2).Close
+    End If
+    If ActiveWindow.ActivePane.View.Type <> wdPrintView Then
+        ActiveWindow.ActivePane.View.Type = wdPrintView
+    End If
+    ActiveDocument.Range(Start:=Selection.End, End:=Selection.End).InsertBreak _
+         Type:=wdSectionBreakContinuous
+    With Selection.PageSetup.TextColumns
+        .SetCount NumColumns:=2
+        .EvenlySpaced = True
+        .LineBetween = False
+        .Width = InchesToPoints(6.5)
+    End With
+    If ActiveWindow.View.SplitSpecial <> wdPaneNone Then
+        ActiveWindow.Panes(2).Close
+    End If
+    If ActiveWindow.ActivePane.View.Type <> wdPrintView Then
+        ActiveWindow.ActivePane.View.Type = wdPrintView
+    End If
+    With Selection.PageSetup.TextColumns
+        .SetCount NumColumns:=1
+        .EvenlySpaced = False
+        .LineBetween = False
+    End With
+    Selection.PageSetup.TextColumns.Add Width:=InchesToPoints(3.5), Spacing:= _
+        InchesToPoints(0), EvenlySpaced:=False
+    If ActiveWindow.View.SplitSpecial <> wdPaneNone Then
+        ActiveWindow.Panes(2).Close
+    End If
+    If ActiveWindow.ActivePane.View.Type <> wdPrintView Then
+        ActiveWindow.ActivePane.View.Type = wdPrintView
+    End If
+    With Selection.PageSetup.TextColumns
+        .SetCount NumColumns:=1
+        .EvenlySpaced = False
+        .LineBetween = False
+    End With
+    If ActiveWindow.View.SplitSpecial <> wdPaneNone Then
+        ActiveWindow.Panes(2).Close
+    End If
+    If ActiveWindow.ActivePane.View.Type <> wdPrintView Then
+        ActiveWindow.ActivePane.View.Type = wdPrintView
+    End If
+    With ActiveDocument.PageSetup.TextColumns
+        .SetCount NumColumns:=1
+        .EvenlySpaced = False
+        .LineBetween = False
+    End With
+    ActiveDocument.PageSetup.TextColumns.Add Width:=InchesToPoints(3.5), _
+        Spacing:=InchesToPoints(0), EvenlySpaced:=False
+    Selection.WholeStory
+End Sub
